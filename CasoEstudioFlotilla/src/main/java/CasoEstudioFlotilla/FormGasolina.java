@@ -10,7 +10,7 @@ import java.time.LocalDate;
  * @author sebas
  */
 public class FormGasolina {
-    public static Combustible crearRegistroCombustible() {
+    public static Combustible crearRegistroGasolina() {
 
         int vehiculoId = Utilidades.leerEntero("ID del carro:");
         LocalDate fecha = Utilidades.leerFecha("Fecha de carga");
