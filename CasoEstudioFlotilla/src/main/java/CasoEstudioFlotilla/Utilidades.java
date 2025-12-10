@@ -1,24 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package CasoEstudioFlotilla;
+
+// @autor Angel
+
+import javax.swing.*;
 import java.time.LocalDate;
 
-/**
- *
- * @author shey
- */
 public class Utilidades {
 
     public static Integer leerEntero(String msg) {
         while (true) {
             try {
-                String entrada = javax.swing.JOptionPane.showInputDialog(msg);
-                if (entrada == null) return null;
+                String entrada = JOptionPane.showInputDialog(msg);
+                if (entrada == null) {
+                    return null;
+                }
                 return Integer.parseInt(entrada.trim());
+            } catch (NumberFormatException e) {
+                mostrarError("Debe ingresar un número entero válido.");
             } catch (Exception e) {
-                javax.swing.JOptionPane.showMessageDialog(null, "Debe digitar un numero entero valido.");
+                mostrarError("Error inesperado: " + e.getMessage());
             }
         }
     }
@@ -26,28 +27,44 @@ public class Utilidades {
     public static Double leerDouble(String msg) {
         while (true) {
             try {
-                String entrada = javax.swing.JOptionPane.showInputDialog(msg);
-                if (entrada == null) return null;
+                String entrada = JOptionPane.showInputDialog(msg);
+                if (entrada == null) {
+                    return null;
+                }
                 return Double.parseDouble(entrada.trim());
+            } catch (NumberFormatException e) {
+                mostrarError("Debe digitar un número decimal válido.");
             } catch (Exception e) {
-                javax.swing.JOptionPane.showMessageDialog(null, "Debe digitar un numero decimal valido.");
+                mostrarError("Error inesperado: " + e.getMessage());
             }
         }
     }
 
+    // Leer Fecha 
     public static LocalDate leerFecha(String msg) {
         while (true) {
             try {
-                String entrada = javax.swing.JOptionPane.showInputDialog(msg + "\nFormato: YYYY-MM-DD");
-                if (entrada == null) return null;
+                String entrada = JOptionPane.showInputDialog(msg + "\nFormato: YYYY-MM-DD");
+                if (entrada == null) {
+                    return null;
+                }
                 return LocalDate.parse(entrada.trim());
             } catch (Exception e) {
-                javax.swing.JOptionPane.showMessageDialog(null, "Formato invalido. Intentelo de nuevo.");
+                mostrarError("Formato de fecha inválido. Debe usar YYYY-MM-DD.");
             }
         }
     }
 
+    // Mensaje Informativo 
     public static void mensaje(String msg) {
-        javax.swing.JOptionPane.showMessageDialog(null, msg);
+        JOptionPane.showMessageDialog(null, msg, "Información", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // Manejo de Errores 
+    public static void mostrarError(String msg) {
+        JOptionPane.showMessageDialog(null,
+                msg,
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
     }
 }

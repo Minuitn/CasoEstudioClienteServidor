@@ -1,4 +1,13 @@
-CasoEstudioFlotilla\AppFlotilla.class
 CasoEstudioFlotilla\Vehiculo.class
+CasoEstudioFlotilla\ConexionDB.class
+servidor\dao\MantenimientoDAO.class
 CasoEstudioFlotilla\Mantenimiento.class
+servidor\dao\VehiculoDAO.class
+CasoEstudioFlotilla\FormGasolina.class
+CasoEstudioFlotilla\Utilidades.class
+CasoEstudioFlotilla\FormVehiculo.class
+CasoEstudioFlotilla\VentanaReportes.class
+CasoEstudioFlotilla\FormMantenimiento.class
 CasoEstudioFlotilla\Combustible.class
+CasoEstudioFlotilla\AppFlotilla.class
+servidor\dao\CombustibleDAO.class
