@@ -8,62 +8,83 @@ import servidor.dao.VehiculoDAO;
 import servidor.dao.MantenimientoDAO;
 import servidor.dao.CombustibleDAO;
 
+
 public class VentanaReportes extends JFrame {
 
     private JTable tablaVehiculos, tablaMantenimientos, tablaCombustible;
     private JLabel lblTotalLitros, lblTotalCosto, lblTotalMant;
-
+    private JButton btnVolver;
     private VehiculoDAO vehiculoDAO = new VehiculoDAO();
     private MantenimientoDAO mantDAO = new MantenimientoDAO();
     private CombustibleDAO combDAO = new CombustibleDAO();
 
-    public VentanaReportes() {
+public VentanaReportes() {
 
-        setTitle("Reportes - Flotilla XYZ");
-        setSize(700, 600);
-        setLocationRelativeTo(null);
-        setResizable(false);
+    setTitle("Reportes - Flotilla XYZ");
+    setSize(700, 600);
+    setLocationRelativeTo(null);
+    setResizable(false);
 
-        JTabbedPane tabs = new JTabbedPane();
+    // Usamos BorderLayout en el contenido
+    getContentPane().setLayout(new BorderLayout());
 
-        // TAB 1 - VEHICULOS
-        JPanel panelVeh = new JPanel(new BorderLayout());
-        tablaVehiculos = new JTable();
-        panelVeh.add(new JScrollPane(tablaVehiculos), BorderLayout.CENTER);
-        tabs.addTab("Vehículos", panelVeh);
+    JTabbedPane tabs = new JTabbedPane();
 
-        // TAB 2 - MANTENIMIENTO
-        JPanel panelMant = new JPanel(new BorderLayout());
-        tablaMantenimientos = new JTable();
-        panelMant.add(new JScrollPane(tablaMantenimientos), BorderLayout.CENTER);
-        tabs.addTab("Mantenimientos", panelMant);
+    // TAB 1 - VEHICULOS
+    JPanel panelVeh = new JPanel(new BorderLayout());
+    tablaVehiculos = new JTable();
+    panelVeh.add(new JScrollPane(tablaVehiculos), BorderLayout.CENTER);
+    tabs.addTab("Vehículos", panelVeh);
 
-        // TAB 3 - COMBUSTIBLE
-        JPanel panelComb = new JPanel(new BorderLayout());
-        tablaCombustible = new JTable();
-        panelComb.add(new JScrollPane(tablaCombustible), BorderLayout.CENTER);
+    // TAB 2 - MANTENIMIENTO
+    JPanel panelMant = new JPanel(new BorderLayout());
+    tablaMantenimientos = new JTable();
+    panelMant.add(new JScrollPane(tablaMantenimientos), BorderLayout.CENTER);
+    tabs.addTab("Mantenimientos", panelMant);
 
-        // Totales debajo del combustible
-        JPanel panelTotales = new JPanel(new GridLayout(3, 1));
-        lblTotalLitros = new JLabel("Total litros: 0");
-        lblTotalCosto = new JLabel("Total costo combustible: ₡0");
-        lblTotalMant = new JLabel("Cantidad mantenimientos: 0");
+    // TAB 3 - COMBUSTIBLE
+    JPanel panelComb = new JPanel(new BorderLayout());
+    tablaCombustible = new JTable();
+    panelComb.add(new JScrollPane(tablaCombustible), BorderLayout.CENTER);
 
-        lblTotalLitros.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        lblTotalCosto.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        lblTotalMant.setFont(new Font("Segoe UI", Font.BOLD, 14));
+    // Totales debajo del combustible
+    JPanel panelTotales = new JPanel(new GridLayout(3, 1));
+    lblTotalLitros = new JLabel("Total litros: 0");
+    lblTotalCosto = new JLabel("Total costo combustible: ₡0");
+    lblTotalMant = new JLabel("Cantidad mantenimientos: 0");
 
-        panelTotales.add(lblTotalLitros);
-        panelTotales.add(lblTotalCosto);
-        panelTotales.add(lblTotalMant);
+    lblTotalLitros.setFont(new Font("Segoe UI", Font.BOLD, 14));
+    lblTotalCosto.setFont(new Font("Segoe UI", Font.BOLD, 14));
+    lblTotalMant.setFont(new Font("Segoe UI", Font.BOLD, 14));
 
-        panelComb.add(panelTotales, BorderLayout.SOUTH);
-        tabs.addTab("Combustible", panelComb);
+    panelTotales.add(lblTotalLitros);
+    panelTotales.add(lblTotalCosto);
+    panelTotales.add(lblTotalMant);
 
-        add(tabs);
+    panelComb.add(panelTotales, BorderLayout.SOUTH);
+    tabs.addTab("Combustible", panelComb);
 
-        cargarDatos();
-    }
+    // Agregamos las pestañas al centro
+    getContentPane().add(tabs, BorderLayout.CENTER);
+
+    // Panel inferior con botón "Volver al menú"
+    JPanel panelBoton = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+    btnVolver = new JButton("Volver al menú");
+    panelBoton.add(btnVolver);
+    getContentPane().add(panelBoton, BorderLayout.SOUTH);
+
+    // Acción del botón
+    btnVolver.addActionListener(e -> {
+        // Si tu menú principal es un JFrame, lo podrías abrir aquí.
+        // Si solo quieres cerrar esta ventana y nada más:
+        this.dispose();
+        // Si tienes una ventana principal tipo FormPrincipal, podrías hacer:
+        // new FormPrincipal().setVisible(true);
+    });
+
+    cargarDatos();
+}
+
 
     // CARGA DE DATOS DESDE LA BASE DE DATOS
     private void cargarDatos() {

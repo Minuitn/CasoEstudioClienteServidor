@@ -16,7 +16,7 @@ public class ConexionDB {
         + "&serverTimezone=UTC";
 
     private static final String USER = "root"; 
-    private static final String PASS = "";  
+    private static final String PASS = "spitfire777";  
 
     public static Connection getConnection() throws SQLException {
         try {
@@ -25,5 +25,15 @@ public class ConexionDB {
             throw new SQLException("Error conectando a la base de datos: " + e.getMessage());
         }
     }
+    public static void main(String[] args) {
+    try {
+        Connection conn = new ConexionDB().getConnection();
+        System.out.println("Conexión a la base de datos OK");
+    } catch (SQLException e) {
+        System.out.println("Error probando la conexión:");
+        e.printStackTrace();
+    }
+}
+
 }
 
