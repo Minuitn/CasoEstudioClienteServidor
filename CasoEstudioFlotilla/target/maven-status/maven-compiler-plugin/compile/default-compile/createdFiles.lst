@@ -2,8 +2,11 @@ CasoEstudioFlotilla\Vehiculo.class
 CasoEstudioFlotilla\ConexionDB.class
 servidor\dao\MantenimientoDAO.class
 CasoEstudioFlotilla\Mantenimiento.class
+servidor\tcp\ServidorFlotilla.class
 servidor\dao\VehiculoDAO.class
+cliente\tcp\ClienteFlotilla.class
 CasoEstudioFlotilla\FormGasolina.class
+servidor\tcp\ServidorFlotilla$ManejadorCliente.class
 CasoEstudioFlotilla\Utilidades.class
 CasoEstudioFlotilla\FormVehiculo.class
 CasoEstudioFlotilla\VentanaReportes.class
